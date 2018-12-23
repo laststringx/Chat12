@@ -12,12 +12,7 @@ import com.laststringx.Chat12.model.TextAnalyzer;
 public class Driver {
 	TextAnalyzer analyzer = new TextAnalyzer();
 
-	@RequestMapping("/hello")
-	public String sayHello() {
-		return analyzer.getData();
-	}
-
-	@RequestMapping(value = "/ai/{userInput}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{userInput}", method = RequestMethod.GET)
 	@ResponseBody
 	public static String creatingResponse(@PathVariable("userInput") String userInput) throws InterruptedException {
 		TextAnalyzer analyzer = new TextAnalyzer();

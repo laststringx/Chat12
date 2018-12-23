@@ -9,19 +9,15 @@ import edu.stanford.nlp.util.StringUtils;
 
 public class TextAnalyzer {
 
-	public String getData() {
-		return "hello World";
-	}
+	// private HashSet<String> portfolio;
+	private static final String modelPath = "edu\\stanford\\nlp\\models\\pos-tagger\\english-left3words\\english-left3words-distsim.tagger";
+	private MaxentTagger tagger;
 
 	public TextAnalyzer() {
 		// TODO Auto-generated constructor stub
 		tagger = new MaxentTagger(modelPath);
 
 	}
-
-	private HashSet<String> portfolio;
-	private static final String modelPath = "edu\\stanford\\nlp\\models\\pos-tagger\\english-left3words\\english-left3words-distsim.tagger";
-	private MaxentTagger tagger;
 
 	public static HashSet<String> extractProperNouns(String taggedOutput) {
 		HashSet<String> propNounSet = new HashSet<String>();
@@ -67,6 +63,30 @@ public class TextAnalyzer {
 		for (String str : tokens) {
 			String tokenSplit[] = str.split("_");
 			if ("RB".equals(tokenSplit[1]) || "RBS".equals(tokenSplit[1])) {
+				sb.append(tokenSplit[0] + ", ");
+			}
+		}
+		sb.append(System.getProperty("line.separator"));
+		sb.append("CC Coordinating conjunction : ");
+		for (String str : tokens) {
+			String tokenSplit[] = str.split("_");
+			if ("CC".equals(tokenSplit[1]) || "CC".equals(tokenSplit[1])) {
+				sb.append(tokenSplit[0] + ", ");
+			}
+		}
+		sb.append(System.getProperty("line.separator"));
+		sb.append("NN Noun, singular or mass : ");
+		for (String str : tokens) {
+			String tokenSplit[] = str.split("_");
+			if ("NN".equals(tokenSplit[1]) || "NN".equals(tokenSplit[1])) {
+				sb.append(tokenSplit[0] + ", ");
+			}
+		}
+		sb.append(System.getProperty("line.separator"));
+		sb.append("CD Cardinal number : ");
+		for (String str : tokens) {
+			String tokenSplit[] = str.split("_");
+			if ("CD".equals(tokenSplit[1]) || "CD".equals(tokenSplit[1])) {
 				sb.append(tokenSplit[0] + ", ");
 			}
 		}
